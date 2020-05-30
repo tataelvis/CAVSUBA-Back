@@ -1,0 +1,259 @@
+{
+  "name": "Party",
+  "plural": "parties",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mysql": {
+    "table": "tb_parti_politique"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "mysql": {
+        "columnName": "ID",
+        "dataType": "int",
+        "dataLength": 11,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "creationDate": {
+      "type": "date",
+      "required": false,
+      "mysql": {
+        "columnName": "DATE_CREATION",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "dateEnregMin": {
+      "type": "date",
+      "required": true,
+      "mysql": {
+        "columnName": "DATE_ENREG_MIN_JUST",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "partyName": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "Nom_PP",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "sigle": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "SIGLE",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "cin": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "CIN",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "representName": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "NOM_REPRESENTANT",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "representSurname": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "PRENOM_REPRESENTANT",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "fonction": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "FONCTION",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "EMAIL",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "representAddress": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "ADRESSE_REPRESENTANT",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "cepEnrollDate": {
+      "type": "date",
+      "required": true,
+      "mysql": {
+        "columnName": "DATE_ENREGISTREMENT_CEP",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "nif": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "NIF",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "phone1": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "TELEPHONE1",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "phone2": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "TELEPHONE2",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "website": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "SITE_WEB",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "partyAdresse": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "ADRESSE_PARTI",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "partyEmail": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "EMAIL_PARTI",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "partyPhone1": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "TELEPHONE1_PARTI",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "partyPhone2": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "TELEPHONE2_PARTI",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,171 @@
+{
+  "name": "Document",
+  "plural": "documents",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mysql": {
+    "table": "tb_doc_PP"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": false,
+      "mysql": {
+        "columnName": "ID",
+        "dataType": "int",
+        "dataLength": 11,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "creationDate": {
+      "type": "date",
+      "required": false,
+      "mysql": {
+        "columnName": "DATE_CREATION",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "actConst": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "ACTE_CONST_NOTARIE_STAT_OBJ_PP",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "actRec": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "ACT_REC_PP",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "recOrg": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "REC_ORG__REGRT_MAS",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "listPP": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "LIST_PP_SIGN_ACC",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "docACC": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "DOC_ACC_EMBL_UNIQUE",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "copyEmb": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "copie_embleme",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "docNomRep": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "DOC_NOMREP_MAND_PP",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "siglEmb": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "mysql": {
+        "columnName": "SIGLE_EMBL_COUL_PP",
+        "dataType": "tinyint",
+        "dataLength": 1,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "receiverName": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "columnName": "NOM_RECEPTRICE",
+        "dataType": "varchar",
+        "dataLength": 512,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "embLogo": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "columnName": "LOGO_PP",
+        "dataType": "int",
+        "dataLength": 11,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,33 @@
+{
+  "name": "container",
+  "plural": "containers",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "sign": {
+      "accepts": [
+        {
+          "arg": "filename",
+          "type": "string",
+          "required": true,
+          "description": "The name of the file to sign"
+        }
+      ],
+      "returns": [],
+      "description": "Digitally sign files",
+      "http": [
+        {
+          "path": "sign",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

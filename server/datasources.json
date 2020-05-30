@@ -1,0 +1,23 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDS": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "app_test",
+    "password": "",
+    "name": "mysqlDS",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "files": {
+    "name": "files",
+    "provider": "filesystem",
+    "connector": "loopback-component-storage",
+    "root": "fichiers",
+    "nameConflict": "makeUnique"
+  }
+}
