@@ -35,14 +35,6 @@
     "dataSource": "db",
     "public": false
   },
-  "Party": {
-    "dataSource": "mysqlDS",
-    "public": true
-  },
-  "Document": {
-    "dataSource": "mysqlDS",
-    "public": true
-  },
   "container": {
     "dataSource": "files",
     "public": true
