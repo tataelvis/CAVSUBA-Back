@@ -7,6 +7,12 @@ const fs = require('fs');
 const pdfReader = require('pdfreader').PdfReader;
 const pdfLib = require('pdf-lib');
 const qr = require('qr-image');
+var QRCode = require('qrcode');
+const Jimp = require('jimp');
+const PDFJS = require('pdfjs-dist/es5/build/pdf.js');
+const jsQR = require('jsqr');
+const NODESIGN = require('node-signpdf');
+//const plainAddPlaceholder = require('node-signpdf/dist/helpers/plainAddPlaceholder');
 
 const HOST = 'http://127.0.0.1:3000';
 const HOST_FRONT = 'http://127.0.0.1:8080';
@@ -38,10 +44,10 @@ router.get('/sign', ({query: {filename}}, res) => {
             const pages = newPdfDoc.getPages();
             const firstPage = pages[0];
             newPdfDoc.embedPng(qrImage).then(pngImage => {
-              const pngDims = pngImage.scale(0.2);
+              const pngDims = pngImage.scale(0.21);
               firstPage.drawImage(pngImage, {
                 x: firstPage.getWidth() / 2 + 115,
-                y: firstPage.getHeight() - 230,
+                y: firstPage.getHeight() - 239,
                 width: pngDims.width,
                 height: pngDims.height,
               });
@@ -80,6 +86,41 @@ router.post('/verify', ({body: {data}}, res) => {
           res.json({result: verified});
         }
       });
+    }
+  });
+});
+
+router.post('/test', (req, res) => {
+  let pdfcontent = '';
+  let content2 = '';
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const pdfName = req.files.communique.name;
+  new pdfReader().parseBuffer(req.files.communique.data, (err, doc)=> {
+    if (doc && !doc.text) {
+      console.log('Take note here ====>', doc);
+    }  else if (doc && doc.text) {
+      pdfcontent = `${pdfcontent}${doc.text}`;
+    } else if (!doc) {
+       fs.readFile(`fichiers/qr-codes/${pdfName}`, (err, pdfBuffer)=> {
+         if (err) {
+          res.status(400).json({message: 'UNKNOWN'});
+          return
+         }
+         new pdfReader().parseBuffer(pdfBuffer, (err, docs)=> {
+          if (docs && !docs.text) {
+          }  else if (docs && docs.text) {
+            content2 = `${content2}${docs.text}`;
+          } else if (!docs) {
+             if (content2 === pdfcontent) {
+               res.json({ message: 'success'});
+             } else {
+               res.status(400).json({message: 'UNKNOWN'});
+             }
+          }
+         })
+       })
     }
   });
 });

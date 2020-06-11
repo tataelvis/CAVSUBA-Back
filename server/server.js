@@ -8,8 +8,10 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 var app = module.exports = loopback();
+app.use(fileUpload());
 var router = require('./routes');
 
 app.start = function() {
@@ -37,3 +39,4 @@ boot(app, __dirname, function(err) {
     app.start();
   }
 });
+
