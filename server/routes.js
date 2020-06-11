@@ -8,10 +8,10 @@ const pdfReader = require('pdfreader').PdfReader;
 const pdfLib = require('pdf-lib');
 const qr = require('qr-image');
 var QRCode = require('qrcode');
-const Jimp = require('jimp');
-const PDFJS = require('pdfjs-dist/es5/build/pdf.js');
-const jsQR = require('jsqr');
-const NODESIGN = require('node-signpdf');
+//const Jimp = require('jimp');
+//const PDFJS = require('pdfjs-dist/es5/build/pdf.js');
+//const jsQR = require('jsqr');
+//const NODESIGN = require('node-signpdf');
 //const plainAddPlaceholder = require('node-signpdf/dist/helpers/plainAddPlaceholder');
 
 const HOST = 'http://127.0.0.1:3000';
@@ -33,32 +33,33 @@ router.get('/sign', ({query: {filename}}, res) => {
         const signature = signer.sign(privateKey);
         const signatureHex = `${signature.toString('hex')} ${filename}`;
         // fs.writeFileSync('signature.txt', signature);
-        const qrPng = qr.image(signatureHex, {type: 'png'});
-        qrPng.pipe(fs.createWriteStream(
-          `fichiers/qr-codes/${filename}.qcode.png`
-        ));
+          QRCode.toDataURL(signatureHex, (err, url) => {
+          const rawBody = url.replace(/^data:image\/png;base64,/, '');
+          fs.writeFile(`fichiers/qr-codes/${filename}.qcode.png`, rawBody, 'base64', (err) => {
+            fs.readFile(`fichiers/qr-codes/${filename}.qcode.png`, (err, qrImage) => {
+              const pdfCom = fs.readFileSync(`fichiers/communique/${filename}`);
+              pdfLib.PDFDocument.load(pdfCom).then(newPdfDoc => {
+                const pages = newPdfDoc.getPages();
+                const firstPage = pages[0];
+                newPdfDoc.embedPng(qrImage).then(pngImage => {
+                  const pngDims = pngImage.scale(0.21);
+                  firstPage.drawImage(pngImage, {
+                    x: firstPage.getWidth() / 2 + 115,
+                    y: firstPage.getHeight() - 239,
+                    width: pngDims.width,
+                    height: pngDims.height,
+                  });
+                  newPdfDoc.save().then(pdfBytes => {
+                    fs.writeFile(`fichiers/qr-codes/${filename}.sign.pdf`, pdfBytes, (err, done) => {
+                      res.redirect(`${HOST}/api/containers/qr-codes/download/${filename}.sign.pdf`);
+                    });
+                  });
+                }).catch(console.log);
+              }).catch(console.log);
+            });
+          })
+          });
         // const qrImage = fs.readFileSync(`fichiers/qr-codes/${filename}.qcode.png`);
-        fs.readFile(`fichiers/qr-codes/${filename}.qcode.png`, (err, qrImage) => {
-          const pdfCom = fs.readFileSync(`fichiers/communique/${filename}`);
-          pdfLib.PDFDocument.load(pdfCom).then(newPdfDoc => {
-            const pages = newPdfDoc.getPages();
-            const firstPage = pages[0];
-            newPdfDoc.embedPng(qrImage).then(pngImage => {
-              const pngDims = pngImage.scale(0.21);
-              firstPage.drawImage(pngImage, {
-                x: firstPage.getWidth() / 2 + 115,
-                y: firstPage.getHeight() - 239,
-                width: pngDims.width,
-                height: pngDims.height,
-              });
-              newPdfDoc.save().then(pdfBytes => {
-                fs.writeFile(`fichiers/qr-codes/${filename}.sign.pdf`, pdfBytes, (err, done) => {
-                  res.redirect(`${HOST}/api/containers/qr-codes/download/${filename}.sign.pdf`);
-                });
-              });
-            }).catch(console.log);
-          }).catch(console.log);
-        });
       }
     });
   });

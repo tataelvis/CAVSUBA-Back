@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 
 var app = module.exports = loopback();
-app.use(fileUpload());
+//app.use(fileUpload());
 var router = require('./routes');
 
 app.start = function() {
