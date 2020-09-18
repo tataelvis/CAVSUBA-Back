@@ -22,7 +22,7 @@
     "loopback-component-explorer": "^6.2.0",
     "loopback-component-storage": "^3.6.3",
     "loopback-connector-mysql": "^5.4.2",
-    "node-forge": "^0.9.1",
+    "node-forge": "^0.10.0",
     "node-signpdf": "^1.2.3",
     "pdf-lib": "^1.7.0",
     "pdfjs-dist": "^2.4.456",
